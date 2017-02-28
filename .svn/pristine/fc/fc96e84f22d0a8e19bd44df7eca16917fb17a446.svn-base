@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "TypeUpdate";
+}
+<div class="header">
+    <h2>Requirement-TypeUpdate</h2>
+</div>
+<div class="content">
+    @{
+        CanYou.Models.Info.LectureTypeRequirement.LectureTypeRequirementItem item = ViewBag.Item as CanYou.Models.Info.LectureTypeRequirement.LectureTypeRequirementItem;
+    }
+    <form class="pure-form pure-form-aligned" id="typeUpdateFrm" action="/Requirement/TypeUpdate/@item.Id" method="post">
+        <fieldset>
+
+            <div class="pure-control-group">
+                <label for="category">과목구분</label>
+                <select name="category" id="category" required>
+                    @foreach (CanYou.Models.Info.LectureCategory.LectureCategoryItem categoryItem in ViewBag.categoryList)
+                    {
+                        string selected = item.LectureCategoryId == categoryItem.Id ? "selected" : "";
+                        <option value="@categoryItem.Id" @selected>@categoryItem.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="type">과목유형구분</label>
+                <select name="type" id="type" required>
+                    @foreach (CanYou.Models.Info.LectureType.LectureTypeItem typeItem in ViewBag.typeList)
+                    {
+                        string selected = item.LectureTypeId == typeItem.Id ? "selected" : "";
+                        <option value="@typeItem.Id" @selected>@typeItem.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="cutline">이수학점</label>
+                <input id="cutline" type="text" name="cutline" placeholder="숫자를 입력하세요." value="@item.Cutline" required>
+            </div>
+            <div class="pure-controls">
+                <button class="pure-button pure-button-primary" id="updateBtn">수정</button>
+                <button class="pure-button pure-button-primary" id="cancel">취소</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section script
+{<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript">
+    $("#typeUpdateFrm").validate({
+        rules: {
+            cutline: {
+                required: true
+            }
+        },
+        messages: {
+            cutline: {
+                required: "학점을 입력해 주세요"
+            }
+        }
+    });
+
+    $("#updateBtn").click(function () {
+        if (!$("#typeUpdateFrm").valid()) return;
+
+        $("#typeUpdateFrm").ajaxForm({
+            success: function (data, statusText, xhr, $form) {
+                if (data.result == 'fail') {
+                    alert(data.message);
+                } else {
+                    $(location).attr('href', "/Requirement/Type");
+                }
+            },
+            dataType: 'json'
+        });
+        $("#typeUpdateFrm").submit();
+    });
+        $("#cancel").click(function () {
+            var url = "/Requirement/Type";
+            $(location).attr('href', url);
+            return false;
+        });
+        $("#category").change(function () {
+            var categoryId = $(this).val();
+            var url = "/Requirement/LectureTypePartial?categoryId=" + categoryId;
+            $("#type").load(url);
+        });
+    </script>
+}
+
+
+
+
+
+
+

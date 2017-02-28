@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CanYou.RouteConfig" Collapsed="true">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.MvcApplication" Collapsed="true">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Controllers.AbstractController" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAQAAgCAIIAgAAAQIAAAABAAgEAEAAAA=</HashCode>
+      <FileName>Controllers\AbstractController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Controllers.AccountController" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQAAAAAgAAAAEAAIEAgAABAAAAAEQAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Controllers.LectureController" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARgAAAAAAAAAAAQAAAAAAAAAAABAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controllers\LectureController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Controllers.RequirementController" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABKBBCAEAQgAggAAQAAAABAAAAEAIABQEAAIQACAA=</HashCode>
+      <FileName>Controllers\RequirementController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Controllers.ResultController" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAg=</HashCode>
+      <FileName>Controllers\ResultController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.Account.AccountDao" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABAAAAAA=</HashCode>
+      <FileName>Models\Info\Account\AccountDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.Account.AccountItem" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAAAAAAAAAACAAAABAAAAAA=</HashCode>
+      <FileName>Models\Info\Account\AccountItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.Account.AccountMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\Account\AccountMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureCategory.LectureCategoryDao" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureCategory\LectureCategoryDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureCategory.LectureCategoryItem" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureCategory\LectureCategoryItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureCategory.LectureCategoryMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureCategory\LectureCategoryMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureCategoryRequirement.LectureCategoryRequirementDao" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAEAAAAAAAAEBAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureCategoryRequirement\LectureCategoryRequirementDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureCategoryRequirement.LectureCategoryRequirementItem" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAABAAAAAAAAChAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureCategoryRequirement\LectureCategoryRequirementItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureCategoryRequirement.LectureCategoryRequirementMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureCategoryRequirement\LectureCategoryRequirementMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureDetail.LectureDetailDao" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEBAAAAAAAAAAEAQAAAAAAEBAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureDetail\LectureDetailDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureDetail.LectureDetailItem" Collapsed="true">
+    <Position X="16.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAABAAAACAgBCgAAAAQAAAAAAAAAAQAAAAAQAAA=</HashCode>
+      <FileName>Models\Info\LectureDetail\LectureDetailItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureDetail.LectureDetailMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureDetail\LectureDetailMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureType.LectureTypeDao" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAABAAAAAQAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureType\LectureTypeDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureType.LectureTypeItem" Collapsed="true">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureType\LectureTypeItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureType.LectureTypeMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureType\LectureTypeMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureTypeRequirement.LectureTypeRequirementDao" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAEAAAAAAAAEBAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\Info\LectureTypeRequirement\LectureTypeRequirementDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureTypeRequirement.LectureTypeRequirementItem" Collapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAABAAAAAAAAChAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureTypeRequirement\LectureTypeRequirementItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.LectureTypeRequirement.LectureTypeRequirementMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureTypeRequirement\LectureTypeRequirementMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.ScoreRequirement.ScoreRequirementDao" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAEAAAAAAAAEBAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Info\ScoreRequirement\ScoreRequirementDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.ScoreRequirement.ScoreRequirementItem" Collapsed="true">
+    <Position X="18.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\ScoreRequirement\ScoreRequirementItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.ScoreRequirement.ScoreRequirementMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\ScoreRequirement\ScoreRequirementMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.653" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.Section.SectionDao" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAAAQAAAAEAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\Section\SectionDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.Section.SectionItem" Collapsed="true">
+    <Position X="13.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\Section\SectionItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.Section.SectionMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\Section\SectionMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.SectionRequirement.SectionRequirementDao" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAEAAAgAAAAEBAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Info\SectionRequirement\SectionRequirementDao.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Info.SectionRequirement.SectionRequirementItem" Collapsed="true">
+    <Position X="18.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAhAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\SectionRequirement\SectionRequirementItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Info.SectionRequirement.SectionRequirementMapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\SectionRequirement\SectionRequirementMapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CanYou.Models.Service.ResultDetailItem" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAIAAQAAAIAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Models\Service\ResultDetailItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CanYou.Models.Service.ResultService" Collapsed="true">
+    <Position X="13.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAQAAAgAAwCAAgAAAAAACQQAAAgAIACEAAIAAACAA=</HashCode>
+      <FileName>Models\Service\ResultService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CanYou.Models.Info.Account.IAccountDao" Collapsed="true">
+    <Position X="9.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABAAAAAA=</HashCode>
+      <FileName>Models\Info\Account\IAccountDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CanYou.Models.Info.LectureCategory.ILectureCategoryDao" Collapsed="true">
+    <Position X="11.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureCategory\ILectureCategoryDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CanYou.Models.Info.LectureCategoryRequirement.ILectureCategoryRequirementDao" Collapsed="true">
+    <Position X="13.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAEAAAAAAAAEBAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureCategoryRequirement\ILectureCategoryRequirementDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CanYou.Models.Info.LectureDetail.ILectureDetailDao" Collapsed="true">
+    <Position X="15" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEBAAAAAAAAAAEAQAAAAAAEBAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureDetail\ILectureDetailDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CanYou.Models.Info.LectureType.ILectureTypeDao" Collapsed="true">
+    <Position X="16.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAABAAAAAQAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\LectureType\ILectureTypeDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CanYou.Models.Info.LectureTypeRequirement.ILectureTypeRequirementDao" Collapsed="true">
+    <Position X="18.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAEAAAAAAAAEBAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\Info\LectureTypeRequirement\ILectureTypeRequirementDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CanYou.Models.Info.ScoreRequirement.IScoreRequirementDao" Collapsed="true">
+    <Position X="9.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAEAAAAAAAAEBAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Info\ScoreRequirement\IScoreRequirementDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CanYou.Models.Info.Section.ISectionDao" Collapsed="true">
+    <Position X="11.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAAAQAAAAEAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Info\Section\ISectionDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CanYou.Models.Info.SectionRequirement.ISectionRequirementDao" Collapsed="true">
+    <Position X="13.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAEAAAgAAAAEBAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\Info\SectionRequirement\ISectionRequirementDao.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

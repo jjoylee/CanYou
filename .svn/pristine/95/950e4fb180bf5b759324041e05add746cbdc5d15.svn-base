@@ -1,0 +1,49 @@
+﻿using CanYou.Models.Info.Account;
+using CanYou.Models.Info.LectureCategory;
+using CanYou.Models.Info.LectureCategoryRequirement;
+using CanYou.Models.Info.LectureDetail;
+using CanYou.Models.Info.LectureType;
+using CanYou.Models.Info.LectureTypeRequirement;
+using CanYou.Models.Info.ScoreRequirement;
+using CanYou.Models.Info.Section;
+using Spring.Context.Support;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace CanYou.Controllers
+{
+    public class AbstractController : Controller
+    {
+        public IAccountDao AccountDao { set; get; }
+        public ILectureCategoryDao LectureCategoryDao { get; set; }
+        public ILectureCategoryRequirementDao LectureCategoryRequirementDao { get; set; }
+        public ILectureDetailDao LectureDetailDao { get; set; }
+        public ILectureTypeDao LectureTypeDao { get; set; }
+        public ILectureTypeRequirementDao LectureTypeRequirementDao { get; set; }
+        public IScoreRequirementDao ScoreRequirementDao { get; set; }
+        public ISectionDao SectionDao { get; set; }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            InjectDao();
+            base.OnActionExecuting(filterContext);
+        }
+
+        private void InjectDao()
+        {
+            var ctx = ContextRegistry.GetContext();
+            AccountDao = ctx.GetObject("AccountDao") as IAccountDao;
+            LectureCategoryDao = ctx.GetObject("LectureCategoryDao") as ILectureCategoryDao;
+            LectureCategoryRequirementDao = ctx.GetObject("LectureCategoryRequirementDao") as ILectureCategoryRequirementDao;
+            LectureDetailDao = ctx.GetObject("LectureDetailDao") as ILectureDetailDao;
+            LectureTypeDao = ctx.GetObject("LectureTypeDao") as ILectureTypeDao;
+            LectureTypeRequirementDao = ctx.GetObject("LectureTypeRequirementDao") as ILectureTypeRequirementDao;
+            ScoreRequirementDao = ctx.GetObject("ScoreRequirementDao") as IScoreRequirementDao;
+            SectionDao = ctx.GetObject("SectionDao") as ISectionDao;
+        } 
+        
+	}
+}

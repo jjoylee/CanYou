@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+
+<form class="pure-form">
+    <fieldset>
+        <legend>Login</legend>
+
+        <input type="email" placeholder="Email">
+        <p></p>
+        <input type="password" placeholder="Password">
+
+
+        <button class="pure-button" id="btnLogin">Login</button>
+    </fieldset>
+</form>
+<p>
+    <button class="pure-button pure-button-primary" id="join">회원가입</button>
+    <a class="pure-button pure-button-primary" href="/Account/FindPassword">비밀번호찾기</a>
+</p>
+
+@section script
+{
+    <script>
+        $("#btnLogin").click(function () {
+            var url = "/Result/Index";
+
+            $(location).attr('href', url);
+            return false;
+            
+        });
+        $("#join").click(function () {
+            var url = "/Account/Join";
+
+            $(location).attr('href', url);
+            return false;
+        })
+    </script> 
+}

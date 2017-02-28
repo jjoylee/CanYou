@@ -1,0 +1,4 @@
+﻿@foreach (CanYou.Models.Info.LectureType.LectureTypeItem item in ViewBag.Type)
+{
+    <option value="@item.Id">@item.Name</option>
+}

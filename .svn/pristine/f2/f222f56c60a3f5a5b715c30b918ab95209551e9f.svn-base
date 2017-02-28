@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Section";
+}
+<div class="header">
+    <h2>Requirement-Section</h2>
+</div>
+
+<div class="content">
+    <table class="pure-table pure-table-bordered" id="sectionyTbl">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>과목구분</th>
+                <th>과목유형</th>
+                <th>수강할 영역 개수</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>&nbsp;</td>
+                <td>교양</td>
+                <td>핵심</td>
+                <td>3</td>
+                <td>
+                    <a class="pure-button button-xsmall" href="/Requirement/SectionUpdate">수정</a>
+                </td>
+                <td>
+                    <a class="pure-button button-xsmall delete" href="/Requirement/Section">삭제</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <p></p>
+    <a class="pure-button pure-button-primary" href="/Requirement/SectionRegister">과목등록</a>
+</div>
+
+
+
+
+
+

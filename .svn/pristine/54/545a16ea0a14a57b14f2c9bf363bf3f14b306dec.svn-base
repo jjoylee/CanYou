@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="header">
+    <h2>Result-Index</h2>
+</div>
+

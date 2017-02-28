@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+}
+<div class="header">
+    <h2>Requirement-Category</h2>
+</div>
+<div class="content">
+    <table class="pure-table pure-table-bordered" id="categoryTbl">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>과목구분</th>
+                <th>이수학점</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CanYou.Models.Info.LectureCategoryRequirement.LectureCategoryRequirementItem item in ViewBag.list) { 
+            <tr>
+                <td>&nbsp;</td>
+                <td>@item.LectureCategoryName</td>
+                <td>@item.Cutline</td>
+                <td>
+                    <a class="pure-button button-xsmall" href="/Requirement/CategoryUpdate" data-id="@item.Id">수정</a>
+                </td>
+                <td>
+                    <a class="pure-button button-xsmall delete" href="/Requirement/Category" data-id="@item.Id">삭제</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <a class="pure-button pure-button-primary" href="/Requirement/CategoryRegister">과목요건등록</a>
+</div>
+@section script
+{
+    <script type="text/javascript">
+           
+        $(".delete").click(function () {
+            var reult = confirm('정말 삭제하시겠습니까?');
+
+            if (result) {
+                var url = "/Requirement/Category";
+
+                $(location).attr('href', url);
+                return false;
+            }
+        });
+    </script>
+}
+

@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Section";
+}
+<div class="header">
+    <h2>Requirement-Section</h2>
+</div>
+
+<div class="content">
+    <table class="pure-table pure-table-bordered" id="sectionyTbl">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>개수</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach (CanYou.Models.Info.SectionRequirement.SectionRequirementItem item in ViewBag.list)
+            {
+                <tr>
+
+                <td>핵심교양 최소 영역 수</td>
+                <td>@item.Cutline</td>
+                <td>
+                    <button class="pure-button button-xsmall" name="update" data-id="@item.Id">수정</button>
+                </td>
+                <td>
+                    <button class="pure-button button-xsmall" name="delete" data-id="@item.Id">삭제</button>
+                </td>
+            </tr>
+            }
+            
+        </tbody>
+    </table>
+    <p></p>
+    <p></p>
+    <a class="pure-button pure-button-primary" href="/Requirement/SectionRegister">영역요건등록</a>
+</div>
+
+@section script
+{
+    <script type="text/javascript">
+        $("button[name='delete']").click(function () {
+            var id = $(this).data("id");
+            var url = "/Requirement/SectionRequirementDelete/" + id;
+            $.getJSON(url, function (data) {
+                if (data.result == 'fail') {
+                    alert(data.message);
+                } else {
+                    $(location).attr('href', "/Requirement/Section");
+                }
+            });
+        });
+        $("button[name='update']").click(function () {
+            var id = $(this).data("id");
+            var url = "/Requirement/SectionUpdate/" + id;
+            $(location).attr('href', url);
+        });
+    </script>
+}
+
+
+
+

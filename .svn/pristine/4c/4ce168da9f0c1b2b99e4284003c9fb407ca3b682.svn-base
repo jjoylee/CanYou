@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "TypeUpdate";
+}
+<div class="header">
+    <h2>Requirement-TypeRegister</h2>
+</div>
+<div class="content">
+    <form class="pure-form pure-form-aligned" id="typeRegisterFrm" method="post" action="/Requirement/TypeRegister">
+        <fieldset>
+
+            <div class="pure-control-group">
+                <label for="category">과목구분</label>
+                <select name="category" id="category" required>
+                    @foreach (CanYou.Models.Info.LectureCategory.LectureCategoryItem item in ViewBag.Category)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="type">과목유형구분</label>
+                <select name="type" id="type" required>
+                    @foreach(CanYou.Models.Info.LectureType.LectureTypeItem item in ViewBag.Type)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="cutline">이수학점</label>
+                <input id="cutline" type="text" name="cutline" placeholder="숫자를 입력하세요." required>
+            </div>
+            <div class="pure-controls">
+                <button class="pure-button pure-button-primary" id="registerBtn">등록</button>
+                <button class="pure-button pure-button-primary" id="cancel">취소</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section script
+{    <script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript">
+    $("#typeRegisterFrm").validate({
+        rules: {
+            cutline: {
+                required: true
+            }
+        },
+        messages: {
+            cutline: {
+                required: "학점을 입력해 주세요"
+            }
+        }
+    });
+
+    $("#registerBtn").click(function () {
+        if (!$("#typeRegisterFrm").valid()) return;
+
+        $("#typeRegisterFrm").ajaxForm({
+            success: function (data, statusText, xhr, $form) {
+                if (data.result == 'fail') {
+                    alert(data.message);
+                } else {
+                    $(location).attr('href', "/Requirement/Type");
+                }
+            },
+            dataType: 'json'
+        });
+        $("#typeRegisterFrm").submit();
+    });
+        $("#cancel").click(function () {
+            var url = "/Requirement/Type";
+            $(location).attr('href', url);
+            return false;
+        });
+
+        $("#category").change(function () {
+            var categoryId = $(this).val();
+            var url = "/Requirement/LectureTypePartial?categoryId=" + categoryId;
+            $("#type").load(url);
+        });
+    </script>
+}
+

@@ -1,0 +1,97 @@
+﻿using CanYou.Models.Info.Account;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
+
+namespace CanYou.Controllers
+{
+    public class AccountController : AbstractController
+    {        
+        [HttpGet]
+        public ActionResult Login()
+        {
+            if (accountItem != null) return Redirect("/Lecture/List");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(string email, string password)
+        {
+            AccountItem item = AccountDao.FindByEmail(email);
+            if (item == null) return Json(new { result = "fail", message = "존재하지 않는 이메일입니다." }, JsonRequestBehavior.AllowGet);
+            if (!item.Password.Equals(password)) return Json(new { result = "fail", message = "존재하지 않는 비밀번호입니다." }, JsonRequestBehavior.AllowGet);
+            FormsAuthentication.SetAuthCookie(item.Email, true);
+            Session["account"] = item;
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+        }
+      
+        public ActionResult Index()
+        {
+
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Update()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Update(string currentPwd,string newPassword)
+        {
+            AccountItem item = AccountDao.FindByEmail(accountItem.Email);
+            item.Password = newPassword; 
+            try
+            {
+                AccountDao.Update(item);
+                Session["account"] = item;
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        public ActionResult FindPassword()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Join()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult JoinUpdate(string email, string password)
+        {
+            AccountItem item = AccountDao.FindByEmail(email);
+            if (item != null) return Json(new { result = "fail", message = "동일한 이메일이 이미 존재합니다." }, JsonRequestBehavior.AllowGet);
+            item = new AccountItem();
+            item.Email = email;
+            item.Password = password;
+            item.State = "REG";
+            try
+            {
+                AccountDao.Insert(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session["account"] = null;
+            return Redirect("/Account/Login");
+        }
+	}
+}

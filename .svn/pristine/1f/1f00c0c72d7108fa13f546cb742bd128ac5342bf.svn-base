@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "ScoreRegister";
+}
+<div class="header">
+    <h2>Requirement-ScoreRegister</h2>
+</div>
+
+<div class="content">
+    <form class="pure-form pure-form-aligned" id="scoreRegisterFrm" method="post" action="/Requirement/ScoreRegister">
+        <fieldset>
+
+            <div class="pure-control-group">
+                <label for="cutline">총학점 요건</label>
+                <input name="cutline" id="cutline" type="text" placeholder="총학점을 입력하세요." required>
+            </div>
+
+            <div class="pure-controls">
+                <button class="pure-button pure-button-primary" id="registerBtn">등록</button>
+                <button class="pure-button pure-button-primary" id="cancel">취소</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section script
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script type="text/javascript">
+        $("#scoreRegisterFrm").validate({
+            rules: {
+                cutline: {
+                    required: true
+                }
+            },
+            messages: {
+                cutline: {
+                    required: "총학점 요건을 입력해 주세요"
+                }
+            }
+        });
+
+        $("#registerBtn").click(function () {
+            if (!$("#scoreRegisterFrm").valid()) return;
+
+            $("#scoreRegisterFrm").ajaxForm({
+                success: function (data, statusText, xhr, $form) {
+                    if (data.result == 'fail') {
+                        alert(data.message);
+                    } else {
+                        $(location).attr('href', "/Requirement/Score");
+                    }
+                },
+                dataType: 'json'
+            });
+            $("#scoreRegisterFrm").submit();
+        });
+        $("#cancel").click(function () {
+            var url = "/Requirement/Score";
+            $(location).attr('href', url);
+            return false;
+        });
+    </script>
+}

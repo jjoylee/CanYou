@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+}
+
+<div class="header">
+    List-Update
+</div>
+
+<div class="content">
+    <form class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="subject">과목구분</label>
+                <select id="subject" required>
+                    <option>전공</option>
+                    <option>교양</option>
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="curtural">교양구분</label>
+                <select id="curtural" required>
+                    <option>구분없음</option>
+                    <option>일반교양</option>
+                    <option>공통교양</option>
+                    <option>핵심교양</option>
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="section">영역</label>
+                <input id="section" type="text" placeholder="숫자를 입력하세요." required>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="credit">학점</label>
+                <input id="creit" type="text" placeholder="숫자를 입력하세요." required>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="title">교과목명</label>
+                <input id="title" type="text" placeholder="교과목명을 입력하세요." required>
+            </div>
+            <div class="pure-controls">
+                <button type="submit" class="pure-button pure-button-primary" id="updateBtn">수정</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section script
+{
+    <script>
+        $("#updateBtn").click(function () {
+            var url = "/Lecture/List";
+            $(location).attr('href', url);
+            return false;
+        });
+    </script>
+}
+

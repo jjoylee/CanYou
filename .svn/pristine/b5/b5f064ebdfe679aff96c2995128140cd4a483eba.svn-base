@@ -1,0 +1,68 @@
+﻿using CanYou.Models.Info.Account;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace CanYou.Controllers
+{
+    public class AccountController : AbstractController
+    {        
+        
+        public ActionResult Login()
+        {
+            return View();
+        }
+        public ActionResult Index()
+        {
+
+            return View();
+        }
+
+        public ActionResult Update()
+        {
+            return View();
+        }
+
+        public ActionResult FindPassword()
+        {
+            return View();
+        }
+
+        public ActionResult FindByEmail(string email)
+        {
+            AccountItem item = AccountDao.FindByEmail(email);
+            if (item == null)
+            {
+
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Join()
+        {
+            return View();
+        }
+
+        public ActionResult JoinUpdate(string email, string password)
+        {
+            AccountItem item = AccountDao.FindByEmail(email);
+            if (item != null) return Json(new { result = "fail", message = "동일한 이메일이 이미 존재합니다." }, JsonRequestBehavior.AllowGet);
+            item = new AccountItem();
+            item.Email = email;
+            item.Password = password;
+            item.State = "REG";
+            try
+            {
+                AccountDao.Insert(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+	}
+}

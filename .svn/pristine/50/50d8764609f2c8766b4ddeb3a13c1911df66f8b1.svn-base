@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="/Content/Css/pure-min.css">
+    <link rel="stylesheet" href="/Content/Css/side-menu.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    @RenderSection("headScript", required: false);
+    <style>
+        .pure-table
+        {
+            margin-top : 10%;
+            margin-bottom:5%;
+            text-align:center;
+        }
+    </style>
+</head>
+@{
+    CanYou.Models.Info.Account.AccountItem accountItem = Session["account"] as CanYou.Models.Info.Account.AccountItem;
+}
+<body>
+    <div id="layout"> 
+        <div id="menu">
+            
+            <div class="pure-menu custom-restricted-width">
+                <a class="pure-menu-heading" href="#">Home</a>
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item">
+                        <a href="/Lecture/List" class="pure-menu-link">강의관리</a>
+                    </li>
+
+                    <li class="pure-menu-item">
+                        <a class="pure-menu-link">졸업요건관리</a>
+                        <ul>
+                            <li class="pure-menu-item"><a href="/Requirement/Category" class="pure-menu-link">과목요건</a></li>
+                            <li class="pure-menu-item"><a href="/Requirement/Type" class="pure-menu-link">과목유형요건</a></li>
+                            <li class="pure-menu-item"><a href="/Requirement/Section" class="pure-menu-link">영역요건</a></li>
+                            <li class="pure-menu-item"><a href="/Requirement/Score" class="pure-menu-link">총학점요건</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/Result/Index" class="pure-menu-link">결과보기</a>
+                    </li>
+
+                    <li>
+                        <a href="/Account/Update" class="pure-menu-link">회원관리</a>
+                    </li>
+                    @{if (accountItem != null)
+                    {
+                        <li>
+                            <a href="##" id="logout" class="pure-menu-heading">logout</a>
+                        </li>
+                    }}
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div id="main">
+            @RenderBody()
+        </div>
+        
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("script", required: false)
+    <script type="text/javascript">
+        $("#logout").click(function () {
+            var url = "/Account/Logout";
+
+            $(location).attr('href', url);
+            return false;
+        });
+    </script>
+</body>
+</html>

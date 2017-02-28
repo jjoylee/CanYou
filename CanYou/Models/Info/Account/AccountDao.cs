@@ -1,0 +1,54 @@
+﻿using Spring.Data.Common;
+using Spring.Data.Generic;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+
+namespace CanYou.Models.Info.Account
+{
+    public class AccountDao : AdoDaoSupport,IAccountDao
+    {
+        public int Insert(AccountItem item)
+        {
+            string query = "Insert into account(email,password,state) VALUES(@Email,@Password,@State)";
+            IDbParameters param = CreateDbParameters();
+            param.AddWithValue("Password", item.Password).DbType = DbType.String;
+            param.AddWithValue("Email", item.Email).DbType = DbType.String;
+            param.AddWithValue("State", item.State).DbType = DbType.String;
+            return AdoTemplate.ExecuteNonQuery(CommandType.Text, query,param);
+        }
+
+        public int Update(AccountItem item)
+        {
+            string query = "UPDATE account SET password = @Password, email = @Email, state = @State where id = @Id";
+            IDbParameters param = CreateDbParameters();
+            param.AddWithValue("Id", item.Id).DbType = DbType.Int32;
+            param.AddWithValue("Password", item.Password).DbType = DbType.String;
+            param.AddWithValue("Email", item.Email).DbType = DbType.String;
+            param.AddWithValue("State", item.State).DbType = DbType.String;
+            return AdoTemplate.ExecuteNonQuery(CommandType.Text, query,param);
+        }
+        
+        public AccountItem FindByEmail(string email)
+        {
+            string query = "select * from account where email=@Email";
+            IDbParameters param = CreateDbParameters();
+            param.AddWithValue("Email", email).DbType = DbType.String;
+            IList<AccountItem> list = AdoTemplate.QueryWithRowMapper<AccountItem>(CommandType.Text, query, new AccountMapper(),param);
+            if (list.Count == 0) return null;
+            return list[0];
+        }
+
+
+        public int UpdateState(int accountId, string state)
+        {
+            string query = "UPDATE account SET state = @State where id = @AccountId";
+            IDbParameters param = CreateDbParameters();
+            param.AddWithValue("AccountId", accountId).DbType = DbType.String;
+            param.AddWithValue("State", state).DbType = DbType.String;
+            return AdoTemplate.ExecuteNonQuery(CommandType.Text, query, param);
+        }
+    }
+}

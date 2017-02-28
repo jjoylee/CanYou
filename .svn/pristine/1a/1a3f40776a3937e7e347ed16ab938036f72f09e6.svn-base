@@ -1,0 +1,14 @@
+﻿@{
+    int count = ViewBag.Count;
+}
+@if (count == 0)
+{
+    <option value="">구분없음</option>
+}
+else
+{
+    foreach (CanYou.Models.Info.LectureType.LectureTypeItem item in ViewBag.Type)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+}

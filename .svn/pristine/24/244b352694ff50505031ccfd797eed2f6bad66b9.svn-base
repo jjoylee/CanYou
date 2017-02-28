@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+<div class="header">
+    <h2>Lecture-Register</h2>
+</div>
+<div class="content">
+    <form class="pure-form pure-form-aligned" id="frmLectureRegister">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="subject">과목구분</label>
+                <select id="subject" name="subject" required>
+                    <option>전공</option>
+                    <option>교양</option>
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="curtural">교양구분</label>
+                <select id="curtural" name="curtural" required>
+                    <option>구분없음</option>
+                    <option>일반교양</option>
+                    <option>공통교양</option>
+                    <option>핵심교양</option>
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="section">영역</label>
+                <input id="section" name="section" type="text" placeholder="숫자를 입력하세요." required>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="credit">학점</label>
+                <input id="creit" name="credit" type="text" placeholder="숫자를 입력하세요." required>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="title">교과목명</label>
+                <input id="title" name="title" type="text" placeholder="교과목명을 입력하세요." required>
+            </div>
+            <div class="pure-controls">
+                <button class="pure-button pure-button-primary" id="registerBtn">등록</button>
+                <button class="pure-button pure-button-primary" id="cancel">취소</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section script
+{
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript">
+    $("#frmLectureRegister").validate({
+        rules: {
+            subject: {
+                required: true
+            },
+            curtural: {
+                required: true
+            },
+            section: {
+                required: true
+            },
+            credit: {
+                required: true
+            },
+            title: {
+                required: true
+            }
+        },
+        messages: {
+            subject: {
+                required: "과목구분을 선택해주세요"
+            },
+            curtural: {
+                required: "교양구분을 선택해주세요"
+            },
+            section: {
+                required: "영역을 입력해주세요"
+            },
+            credit: {
+                required: "학점을 입력해주세요"
+            },
+            title:{
+                required:"교과목명을 입력해주세요"
+            }
+        }
+    });
+
+    $("#registerBtn").click(function () {
+        if (!$("#frmLectureRegister").valid()) return;
+
+        $("#frmLectureRegister").ajaxForm({
+            success: function (data, statusText, xhr, $form) {
+                if (data.result == 'fail') {
+                    alert(data.message);
+                } else {
+                    $(location).attr('href', "/Lecture/List");
+                }
+            },
+            dataType: 'json'
+        });
+        $("#frmLectureRegister").submit();
+    });
+    $("#cancel").click(function () {
+        var url = "/Lecture/List";
+        $(location).attr('href', url);
+        return false;
+    });
+</script>
+}

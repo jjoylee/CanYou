@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "SectionUpdate";
+}
+
+<div class="header">
+    <h2>Requirement-SectionUpdate</h2>
+</div>
+<div class="content">
+    <form class="pure-form pure-form-aligned" id="sectionUpdateFrm">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="section">핵심교양 최소 영역 수</label>
+                <input name="section" id="section" type="text" placeholder="영역 수를 입력하세요." required>
+            </div>
+            <div class="pure-controls">
+                <button class="pure-button pure-button-primary" id="updateBtn">수정</button>
+                <button class="pure-button pure-button-primary" id="cancel">취소</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section script
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script type="text/javascript">
+    $("#sectionUpdateFrm").validate({
+        rules: {
+            section: {
+                required: true
+            }
+        },
+        messages: {
+            section: {
+                required: "영역의 개수를 입력해 주세요"
+            }
+        }
+    });
+
+    $("#updateBtn").click(function () {
+        if (!$("#sectionUpdateFrm").valid()) return;
+
+        $("#sectionUpdateFrm").ajaxForm({
+            success: function (data, statusText, xhr, $form) {
+                if (data.result == 'fail') {
+                    alert(data.message);
+                } else {
+                    $(location).attr('href', "/Requirement/Section");
+                }
+            },
+            dataType: 'json'
+        });
+        $("#sectionUpdateFrm").submit();
+    });
+        $("#cancel").click(function () {
+            var url = "/Requirement/Section";
+            $(location).attr('href', url);
+            return false;
+        });
+    </script>
+}
+

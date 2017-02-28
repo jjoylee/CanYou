@@ -1,0 +1,51 @@
+﻿using Spring.Data.Common;
+using Spring.Data.Generic;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+
+namespace CanYou.Models.Info.LectureDetail
+{
+    public class LectureDetailDao : AdoDaoSupport,ILectureDetailDao
+    {
+        public int Insert(LectureDetailItem item)
+        {
+            string query = "Insert into LectureDetail VALUES(@Id,@LectureCategoryId,@LectureTypeId,@Name,@Score,@SectionId,@AccountId,@Credit)";
+            IDbParameters param = CreateDbParameters();
+            param.AddWithValue("Id", item.Id).DbType = DbType.Int32;
+            param.AddWithValue("LectureCategoryId",item.LectureCategoryId).DbType = DbType.Int32;
+            param.AddWithValue("LectureTypeId",item.LectureTypeId).DbType = DbType.Int32;
+            param.AddWithValue("Name",item.Name).DbType = DbType.String;
+            param.AddWithValue("Score",item.Score).DbType = DbType.String;
+            param.AddWithValue("SectionId",item.SectionId).DbType = DbType.Int32;
+            param.AddWithValue("AccountId",item.AccountId).DbType = DbType.Int32;
+            param.AddWithValue("Credit",item.Credit).DbType = DbType.Int32;
+            return AdoTemplate.ExecuteNonQuery(CommandType.Text,query,param);
+        }
+
+        public int Update(LectureDetailItem item)
+        {
+            string query = "UPDATE LectureDetail SET accountId = @AccountId, lectureCategoryId = @LectureCategoryId, lectureTypeId = @LectureTypeId, name = @Name, score = @Score, sectionId=@SectionId, credit = @Credit where id = @Id";
+            IDbParameters param = CreateDbParameters();
+            param.AddWithValue("Id", item.Id).DbType = DbType.Int32;
+            param.AddWithValue("LectureCategoryId", item.LectureCategoryId).DbType = DbType.Int32;
+            param.AddWithValue("LectureTypeId", item.LectureTypeId).DbType = DbType.Int32;
+            param.AddWithValue("Name", item.Name).DbType = DbType.String;
+            param.AddWithValue("Score", item.Score).DbType = DbType.String;
+            param.AddWithValue("SectionId", item.SectionId).DbType = DbType.Int32;
+            param.AddWithValue("AccountId", item.AccountId).DbType = DbType.Int32;
+            param.AddWithValue("Credit", item.Credit).DbType = DbType.Int32;
+            return AdoTemplate.ExecuteNonQuery(CommandType.Text, query, param);
+        }
+
+        public int Delete(int id)
+        {
+            string query = "delete from LectureDetail where id= @Id";
+            IDbParameters param = CreateDbParameters();
+            param.AddWithValue("Id", id).DbType = DbType.Int32;
+            return AdoTemplate.ExecuteNonQuery(CommandType.Text, query,param);
+        }
+    }
+}

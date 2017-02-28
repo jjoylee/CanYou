@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database">
+
+  <db:provider id="dbProvider"
+                provider="SqlServer-2.0"
+                connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Projects\CanYou\CanYou\App_Data\Canyou.mdf;Integrated Security=True"/>
+
+  <object id="adoTemplate" type="Spring.Data.Generic.AdoTemplate, Spring.Data">
+    <property name="DbProvider" ref="dbProvider"/>
+    <property name="DataReaderWrapperType" value="Spring.Data.Support.NullMappingDataReader, Spring.Data"/>
+  </object>
+
+  <object id="AccountDao" type="CanYou.Models.Info.Account.AccountDao, CanYou">
+    <property name="AdoTemplate" ref="adoTemplate" />
+  </object>
+  
+  <object id="LectureCategoryDao" type="CanYou.Models.Info.LectureCategory.LectureCategoryDao, CanYou">
+    <property name="AdoTemplate" ref="adoTemplate" />
+  </object>
+  
+  <object id="LectureCategoryRequirementDao" type="CanYou.Models.Info.LectureCategoryRequirement.LectureCategoryRequirementDao, CanYou">
+    <property name="AdoTemplate" ref="adoTemplate" />
+  </object>
+  
+  <object id="LectureDetailDao" type="CanYou.Models.Info.LectureDetail.LectureDetailDao, CanYou">
+    <property name="AdoTemplate" ref="adoTemplate" />
+  </object>
+  
+  <object id="LectureTypeDao" type="CanYou.Models.Info.LectureType.LectureTypeDao, CanYou">
+    <property name="AdoTemplate" ref="adoTemplate" />
+  </object>
+
+  <object id="LectureTypeRequirementDao" type="CanYou.Models.Info.LectureTypeRequirement.LectureTypeRequirementDao, CanYou">
+    <property name="AdoTemplate" ref="adoTemplate" />
+  </object>
+
+  <object id="ScoreRequirementDao" type="CanYou.Models.Info.ScoreRequirement.ScoreRequirementDao, CanYou">
+    <property name="AdoTemplate" ref="adoTemplate" />
+  </object>
+
+  <object id="SectionDao" type="CanYou.Models.Info.Section.SectionDao, CanYou">
+    <property name="AdoTemplate" ref="adoTemplate" />
+  </object>
+
+  <object id="SectionRequirementDao" type="CanYou.Models.Info.SectionRequirement.SectionRequirementDao, CanYou">
+    <property name="AdoTemplate" ref="adoTemplate"/>
+  </object>
+</objects>

@@ -1,0 +1,15 @@
+﻿@{
+    int count = ViewBag.Count;
+}
+@if (count == 0)
+{
+    <option value="0">구분없음</option>
+}
+else
+{
+    foreach (CanYou.Models.Info.Section.SectionItem item in ViewBag.Section)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+  
+}

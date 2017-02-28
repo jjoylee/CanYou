@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "FindPassword";
+}
+<div class="header">
+    <h2>Account-FindPassword</h2>
+</div>
+
+

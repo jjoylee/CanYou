@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    int startNum = 1;
+}
+
+<div class="header">
+    <h2>Result-Index</h2>
+</div>
+<div class="content">
+    <table>
+       <thead>
+           <tr>
+               <th>No</th>
+               <th>요건명</th>
+               <th>요건</th>
+               <th>결과</th>
+               <th>&nbsp;</th>
+           </tr>
+       </thead>
+        <tbody>
+             @foreach (CanYou.Models.Service.ResultDetailItem item in ViewBag.Results)
+             {
+                 <tr>
+                     <td>@(startNum++)</td>
+                     <td>@item.Name</td>
+                     <td>@item.Requirement</td>
+                     <td>@item.GetResult</td>
+                 </tr>   
+             }
+        </tbody>
+    </table>
+</div>

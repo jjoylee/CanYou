@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Type";
+    int startNum = 1;
+}
+<div class="header">
+    <h2>과목유형요건</h2>
+</div>
+<div class="content">
+    <table class="pure-table pure-table-bordered" id="typeTbl">
+        <thead>
+            <tr style="text-align:center">
+                <th>&nbsp;</th>
+                <th>과목구분</th>
+                <th>과목유형구분</th>
+                <th>이수학점</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CanYou.Models.Info.LectureTypeRequirement.LectureTypeRequirementItem item in ViewBag.list)
+            {
+            <tr>
+                <td>@(startNum++)</td>
+                <td>@item.LectureCategoryName</td>
+                <td>@item.LectureTypeName</td>
+                <td>@item.Cutline</td>
+                <td>
+                    <button class="pure-button button-xsmall" name="update" data-id="@item.Id">수정</button>
+                </td>
+                <td>
+                    <button class="pure-button button-xsmall delete" name="delete" data-id="@item.Id">삭제</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <p></p>
+    <p></p>
+    <a class="pure-button pure-button-primary" href="/Requirement/TypeRegister">과목유형등록</a> 
+</div>
+
+
+
+@section script
+{
+     <script type="text/javascript">
+            $("button[name='delete']").click(function () {
+                var id = $(this).data("id");
+                var url = "/Requirement/TypeRequirementDelete/" + id;
+                $.getJSON(url, function (data) {
+                    if (data.result == 'fail') {
+                        alert(data.message);
+                    } else {
+                        $(location).attr('href', "/Requirement/Type");
+                    }
+                });
+            });
+
+            $("button[name='update']").click(function () {
+                var id = $(this).data("id");
+                var url = "/Requirement/TypeUpdate/" + id;
+                $(location).attr('href', url);
+            });
+    </script>
+}
+

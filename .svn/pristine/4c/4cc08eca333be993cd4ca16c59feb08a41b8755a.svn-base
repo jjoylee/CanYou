@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    int startNum = 1;
+}
+
+<div class="header">
+    <h2>결과보기</h2>
+</div>
+<div class="content">
+    <table class="pure-table pure-table-bordered">
+        <thead>
+            <tr style="text-align:center">
+                <th>No</th>
+                <th>요건명</th>
+                <th>요건</th>
+                <th>현재 상태</th>
+                <th>결과</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CanYou.Models.Service.ResultDetailItem item in ViewBag.Results)
+            {
+                <tr>
+                    <td>@(startNum++)</td>
+                    <td>@item.Name</td>
+                    <td>@item.Requirement</td>
+                    <td>@item.Score</td>
+                    <td>@item.GetResult()</td>
+                    @if (item.IsPassed())
+                    {
+                        <td style="width:100px; background-color:#00FF00;"></td>
+                    }
+                    else
+                    {
+                        <td style="width:100px; background-color:#FF0000;"></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (ViewBag.IsAllPassed)
+   {
+      <img style="width:50%;" src="~/Content/img/congratulation.jpg" />
+   }
+
+</div>

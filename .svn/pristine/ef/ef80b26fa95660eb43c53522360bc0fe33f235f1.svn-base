@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+}
+<div class="header">
+    <h2>Account-Update</h2>
+</div>
+<div class="content">
+    <form class="pure-form pure-form-aligned">
+        <fieldset>
+            <legend>비밀번호 변경</legend>
+
+            <div class="pure-control-group">
+                <label for="currentPwd">현재 비밀번호</label>
+                <input id="currentPwd" type="email">
+            </div>
+
+            <div class="pure-control-group">
+                <label for="newPassword">세 비밀번호</label>
+                <input id="newPassword" type="password">
+            </div>
+
+            <div class="pure-control-group">
+                <label for="newPasswordChk">새 비밀번호확인</label>
+                <input id="newPasswordChk" type="password" />
+            </div>
+
+            <div class="pure-controls">
+                <button class="pure-button pure-button-primary" id="update">수정</button>
+                <button class="pure-button pure-button-primary" id="cancel">취소</button> 
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section script
+{
+    <script>
+        $("#update").click(function () {
+            var url = "/Account/Login";
+            $(location).attr('href', url);
+            return false;
+        });
+
+        $("#cancel").click(function () {
+            var url = "/Lecture/List";
+            $(location).attr('href', url);
+            return false;
+        });
+    </script>
+    
+}

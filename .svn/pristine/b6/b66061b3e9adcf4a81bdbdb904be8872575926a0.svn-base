@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+
+<form class="pure-form" id="frmLogin" method="post" action="/Account/Login">
+    <fieldset>
+        <legend>Login</legend>
+
+        <input type="email" name ="email" placeholder="Email">
+        <p></p>
+        <input type="password" placeholder="Password" name="password">
+
+
+        <button class="pure-button" id="btnLogin">Login</button>
+    </fieldset>
+</form>
+<p>
+    <button class="pure-button pure-button-primary" id="join">회원가입</button>
+    
+</p>
+
+@section script
+{
+    
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script type="text/javascript">
+        $("#frmLogin").validate({
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 8
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+            },
+            messages: {
+                password: {
+                    required: "암호를 입력해 주세요",
+                    minlength: "암호는 8자 이상이어야 합니다."
+                },
+                email: "형식에 맞는 이메일을 입력해 주세요."
+            }
+        });
+
+        $("#btnLogin").click(function () {
+            if (!$("#frmLogin").valid()) return;
+
+            $("#frmLogin").ajaxForm({
+                success: function (data, statusText, xhr, $form) {
+                    if (data.result == 'fail') {
+                        alert(data.message);
+                    } else {
+                        $(location).attr('href', "/Lecture/List");
+                    }
+                },
+                dataType: 'json'
+            });
+            $("#frmLogin").submit();
+            return false;
+        });
+
+        $("#join").click(function () {
+            var url = "/Account/Join";
+
+            $(location).attr('href', url);
+            return false;
+        });
+        $("#findPwd").click(function () {
+            var url = "/Account/FindPassword";
+
+            $(location).attr('href', url);
+            return false;
+        });
+    </script> 
+}

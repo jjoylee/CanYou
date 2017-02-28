@@ -1,0 +1,369 @@
+﻿using CanYou.Models.Info.LectureCategory;
+using CanYou.Models.Info.LectureCategoryRequirement;
+using CanYou.Models.Info.LectureType;
+using CanYou.Models.Info.LectureTypeRequirement;
+using CanYou.Models.Info.ScoreRequirement;
+using CanYou.Models.Info.Section;
+using CanYou.Models.Info.SectionRequirement;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace CanYou.Controllers
+{
+    [Authorize]
+    public class RequirementController : AbstractController
+    {
+        //
+        // GET: /Requirement/
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Category()
+        {
+            IList<LectureCategoryRequirementItem> list = LectureCategoryRequirementDao.FindByAccountId(accountItem.Id);
+            ViewBag.list = list;
+            return View();
+        }
+
+        [HttpGet]
+
+        public ActionResult CategoryRegister()
+        {
+            IList<LectureCategoryItem> list = LectureCategoryDao.FindAll();
+            ViewBag.Category = list;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CategoryRegister(int category, int cutline)
+        {
+            if (ExistCateogyrRequirement(category)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
+
+            LectureCategoryRequirementItem item = new LectureCategoryRequirementItem();
+            item.LectureCategoryId = category;
+            item.Cutline = cutline;
+            item.AccountId = accountItem.Id;
+
+            try
+            {
+                LectureCategoryRequirementDao.Insert(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+        [HttpGet]
+        public ActionResult CategoryUpdate(int id)
+        {
+            LectureCategoryRequirementItem item = LectureCategoryRequirementDao.FindById(id);
+            IList<LectureCategoryItem> categoryList = LectureCategoryDao.FindAll();
+            ViewBag.Item = item;
+            ViewBag.categoryList = categoryList;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CategoryUPdate(int id, int category, int cutline)
+        {
+            if (ExistCateogyrRequirement(category)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
+            LectureCategoryRequirementItem item = new LectureCategoryRequirementItem();
+            item.LectureCategoryId = category;
+            item.Cutline = cutline;
+            item.AccountId = accountItem.Id;
+            item.Id = id;
+            try
+            {
+                LectureCategoryRequirementDao.Update(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult CategoryRequirementDelete(int id)
+        {
+            try
+            {
+                LectureCategoryRequirementDao.Delete(id);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private bool ExistCateogyrRequirement(int category)
+        {
+            LectureCategoryRequirementItem item = LectureCategoryRequirementDao.FindByAccountAndCategoryId(accountItem.Id, category);
+            return item != null;
+        }
+        
+
+
+        public ActionResult Type()
+        {
+            IList<LectureTypeRequirementItem> list = LectureTypeRequirementDao.FindByAccountId(accountItem.Id);
+            ViewBag.list = list;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult TypeRegister()
+        {
+            IList<LectureCategoryItem> categoryList = LectureCategoryDao.FindLectureTypeExist();
+            ViewBag.Category = categoryList;
+            IList<LectureTypeItem> typeList = LectureTypeDao.FindByCategoryId(categoryList[0].Id);
+            ViewBag.Type = typeList;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TypeRegister(int type, int cutline)
+        {
+            if (ExistTypeRequirement(type)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
+            LectureTypeRequirementItem item = new LectureTypeRequirementItem();
+            item.LectureTypeId = type;
+            item.Cutline = cutline;
+            item.AccountId = accountItem.Id;
+
+            try
+            {
+                LectureTypeRequirementDao.Insert(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private bool ExistTypeRequirement(int type)
+        {
+            LectureTypeRequirementItem item = LectureTypeRequirementDao.FindByAccountAndTypeId(accountItem.Id, type);
+            return item != null;
+        }
+
+
+        [HttpGet]
+        public ActionResult TypeUpdate(int id)
+        {
+            LectureTypeRequirementItem item = LectureTypeRequirementDao.FindById(id);
+            IList<LectureTypeItem> typeList = LectureTypeDao.FindAll();
+            IList<LectureCategoryItem> categoryList = LectureCategoryDao.FindLectureTypeExist();
+            ViewBag.categoryList = categoryList;
+            ViewBag.Item = item;
+            ViewBag.typeList = typeList;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TypeUpdate(int id, int type, int cutline)
+        {
+            if (ExistTypeRequirement(type)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
+            LectureTypeRequirementItem item = new LectureTypeRequirementItem();
+            item.LectureTypeId = type;
+            item.Cutline = cutline;
+            item.AccountId = accountItem.Id;
+            item.Id = id;
+            try
+            {
+                LectureTypeRequirementDao.Update(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+      
+        public ActionResult TypeRequirementDelete(int id)
+        {
+            try
+            {
+                LectureTypeRequirementDao.Delete(id);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult Section()
+        {
+            IList<SectionRequirementItem> list = SectionRequirementDao.FindByAccountId(accountItem.Id);
+            ViewBag.list = list;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult SectionRegister()
+        {
+            IList<SectionRequirementItem> list = SectionRequirementDao.FindByLectureTypeId(2);
+            ViewBag.Section = list;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SectionRegister(int cutline)
+        {
+            if (ExistSectionRequirement(accountItem.Id)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
+            SectionRequirementItem item = new SectionRequirementItem();
+            item.Cutline = cutline;
+            item.AccountId = accountItem.Id;
+            item.LectureTypeId = 2;
+
+            try
+            {
+                SectionRequirementDao.Insert(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private bool ExistSectionRequirement(int id)
+        {
+            SectionRequirementItem item = SectionRequirementDao.FindByAccountIdChk(id);
+            return item != null;
+        }
+
+        [HttpGet]
+        public ActionResult SectionUpdate(int id)
+        {
+            SectionRequirementItem item = SectionRequirementDao.FindById(id);
+            ViewBag.Item = item;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SectionUpdate(int id, int cutline)
+        {
+            SectionRequirementItem item = new SectionRequirementItem();
+            item.LectureTypeId = 2;
+            item.Cutline = cutline;
+            item.AccountId = accountItem.Id;
+            item.Id = id;
+            try
+            {
+                SectionRequirementDao.Update(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult SectionRequirementDelete(int id)
+        {
+            try
+            {
+                SectionRequirementDao.Delete(id);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult LectureTypePartial(int categoryId)
+        {
+            IList<LectureTypeItem> typeList = LectureTypeDao.FindByCategoryId(categoryId);
+            ViewBag.Type = typeList;
+            return PartialView("~/Views/Requirement/LectureTypePartial.cshtml");
+        }
+
+        public ActionResult Score()
+        {
+            IList<ScoreRequirementItem> list = ScoreRequirementDao.FindByAccountId(accountItem.Id);
+            ViewBag.list = list;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ScoreRegister()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ScoreRegister(int cutline)
+        {
+            if (ExistScoreRequirement(accountItem.Id)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
+            ScoreRequirementItem item = new ScoreRequirementItem();
+            item.Cutline = cutline;
+            item.AccountId = accountItem.Id;
+
+            try
+            {
+                ScoreRequirementDao.Insert(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private bool ExistScoreRequirement(int id)
+        {
+            ScoreRequirementItem item = ScoreRequirementDao.FindByAccountIdForChcek(id);
+            return item != null;
+        }
+
+        [HttpGet]
+        public ActionResult ScoreUpdate(int id)
+        {
+            ScoreRequirementItem item = ScoreRequirementDao.FindById(id);
+            ViewBag.Item = item;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ScoreUpdate(int id, int cutline)
+        {
+            ScoreRequirementItem item = new ScoreRequirementItem();
+            item.Cutline = cutline;
+            item.AccountId = accountItem.Id;
+            item.Id = id;
+           
+            try
+            {
+                ScoreRequirementDao.Update(item);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult ScoreRequirementDelete(int id)
+        {
+            try
+            {
+                ScoreRequirementDao.Delete(id);
+                return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+	}
+}

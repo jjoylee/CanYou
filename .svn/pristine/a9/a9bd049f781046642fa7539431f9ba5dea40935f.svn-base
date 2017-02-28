@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Section";
+}
+<div class="header">
+    <h2>Requirement-Section</h2>
+</div>
+
+<div class="content">
+    <table class="pure-table pure-table-bordered" id="sectionyTbl">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>개수</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach (CanYou.Models.Info.SectionRequirement.SectionRequirementItem item in ViewBag.list)
+            {
+                <tr>
+
+                <td>핵심교양 최소 영역 수</td>
+                <td>@item.Cutline</td>
+                <td>
+                    <a class="pure-button button-xsmall" href="/Requirement/SectionUpdate">수정</a>
+                </td>
+                <td>
+                    <a class="pure-button button-xsmall delete" href="/Requirement/Section">삭제</a>
+                </td>
+            </tr>
+            }
+            
+        </tbody>
+    </table>
+    <p></p>
+    <p></p>
+    <a class="pure-button pure-button-primary" href="/Requirement/SectionRegister">영역요건등록</a>
+</div>
+
+@section script
+{
+    <script type="text/javascript">
+
+        $(".delete").click(function () {
+            var reult = confirm('정말 삭제하시겠습니까?');
+
+            if (result) {
+                var url = "/Requirement/Section";
+
+                $(location).attr('href', url);
+                return false;
+            }
+        });
+    </script>
+}
+
+
+
+

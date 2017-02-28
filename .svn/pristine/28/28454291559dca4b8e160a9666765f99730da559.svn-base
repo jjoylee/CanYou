@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "ScoreUpdate";
+}
+<div class="header">
+    <h2>총학점요건 수정</h2>
+</div>
+
+
+<div class="content">
+    @{
+        CanYou.Models.Info.ScoreRequirement.ScoreRequirementItem item = ViewBag.Item as CanYou.Models.Info.ScoreRequirement.ScoreRequirementItem;
+    }
+    <form class="pure-form pure-form-aligned" id="scoreUpdateFrm" method="post" action="/Requirement/ScoreUpdate/@item.Id">
+        <fieldset>
+
+            <div class="pure-control-group">
+                <label for="cutline">총학점 요건</label>
+                <input name="cutline" id="cutline" type="text" placeholder="총학점을 입력하세요." value="@item.Cutline" required>
+            </div>
+
+            <div class="pure-controls">
+                <button class="pure-button pure-button-primary" id="updateBtn">수정</button>
+                <button class="pure-button pure-button-primary" id="cancel">취소</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section script
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script type="text/javascript">
+        $("#scoreUpdateFrm").validate({
+            rules: {
+                cutline: {
+                    required: true
+                }
+            },
+            messages: {
+                cutline: {
+                    required: "총학점 요건을 입력해 주세요"
+                }
+            }
+        });
+
+        $("#updateBtn").click(function () {
+            if (!$("#scoreUpdateFrm").valid()) return;
+
+            $("#scoreUpdateFrm").ajaxForm({
+                success: function (data, statusText, xhr, $form) {
+                    if (data.result == 'fail') {
+                        alert(data.message);
+                    } else {
+                        $(location).attr('href', "/Requirement/Score");
+                    }
+                },
+                dataType: 'json'
+            });
+            $("#scoreUpdateFrm").submit();
+            return false;
+        });
+        $("#cancel").click(function () {
+            var url = "/Requirement/Score";
+            $(location).attr('href', url);
+            return false;
+        });
+    </script>
+}

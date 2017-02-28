@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+<div class="header">
+    <h2>강의등록</h2>
+</div>
+<div class="content">
+    <form class="pure-form pure-form-aligned" id="frmLectureRegister" method="post" action="/Lecture/Register">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="category">과목구분</label>
+                <select id="category" name="category" required>
+                    @foreach (CanYou.Models.Info.LectureCategory.LectureCategoryItem item in ViewBag.Category)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="type">과목유형구분</label>
+                <select id="type" name="type">
+                    @if (ViewBag.Type.Count == 0) {
+                          <option value="0">구분없음</option>
+                      }
+                      else 
+                      { 
+                        foreach (CanYou.Models.Info.LectureType.LectureTypeItem item in ViewBag.Type)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                     }
+                </select>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="section">영역</label>
+                <select id="section" name="section">
+                    @if(ViewBag.Section.Count == 0)
+                    {
+                        <option value="0">구분없음</option>
+                    }
+                    else
+                    {
+                        foreach (CanYou.Models.Info.Section.SectionItem item in ViewBag.Section)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+
+
+            <div class="pure-control-group">
+                <label for="credit">학점</label>
+                <input id="creit" name="credit" type="text" placeholder="숫자를 입력하세요." required>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="score">성적</label>
+                <input id="score" name="score" type="text" placeholder="받은 성적을 입력하세요" required />
+            </div>
+
+            <div class="pure-control-group">
+                <label for="title">교과목명</label>
+                <input id="title" name="title" type="text" placeholder="교과목명을 입력하세요." required>
+            </div>
+            <div class="pure-controls">
+                <button class="pure-button pure-button-primary" id="registerBtn">등록</button>
+                <button class="pure-button pure-button-primary" id="cancel">취소</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section script
+{
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.form.js"></script>
+<script src="~/Content/js/customValidator.js"></script>
+<script type="text/javascript">
+    $("#frmLectureRegister").validate({
+        rules: {
+            credit: {
+                required: true,
+                range: [1, 3]
+            },
+            score:
+              {
+                  required: true,
+                  scoreValue: true
+                },
+            title: {
+                required: true
+            }
+        },
+        messages: 
+        {
+            credit: {
+                required: "학점을 입력해주세요",
+                range: "1이상 3이하의 수를 입력해주세요."
+            },
+            title:{
+                required:"교과목명을 입력해주세요"
+            },
+            score: {
+                required:"받은 점수를 입력해주세요"
+            }
+        }
+    });
+
+    $("#registerBtn").click(function () {
+        if (!$("#frmLectureRegister").valid()) return;
+
+        $("#frmLectureRegister").ajaxForm({
+            success: function (data, statusText, xhr, $form) {
+                if (data.result == 'fail') {
+                    alert(data.message);
+                } else {
+                    $(location).attr('href', "/Lecture/List");
+                }
+            },
+            dataType: 'json'
+        });
+        $("#frmLectureRegister").submit();
+        return false;
+    });
+
+    $("#cancel").click(function () {
+        var url = "/Lecture/List";
+        $(location).attr('href', url);
+        return false;
+    });
+
+    $("#category").change(function () {
+        loadtype();
+        loadSection();
+    });
+
+    $("#type").change(function () {
+        loadSection();
+    });
+
+    function loadtype() {
+        console.log("type");
+        var categoryId = $("#category").val();
+        var url = "/Requirement/LectureTypePartial?categoryId=" + categoryId;
+        $("#type").load(url, {},function(){
+            loadSection();
+        });
+    }
+
+    function loadSection() {
+        console.log("section");
+        var typeId = $("#type").val();
+        var url = "/Lecture/SectionPartial?typeId=" + typeId;
+        $("#section").load(url);
+    }
+</script>
+}

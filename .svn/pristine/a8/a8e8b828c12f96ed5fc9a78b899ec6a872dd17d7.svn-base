@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Score";
+}
+
+<div class="header">
+    <h2>Requirement-Score</h2>
+</div>
+
+<div class="content">
+    <table class="pure-table pure-table-bordered" id="scoreTbl">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>학점</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CanYou.Models.Info.ScoreRequirement.ScoreRequirementItem item in ViewBag.list)
+            {
+                <tr>
+                <td>이수해야 할 총학점</td>
+                <td>@item.Cutline</td>
+                <td>
+                    <a class="pure-button button-xsmall" href="/Requirement/ScoreUpdate">수정</a>
+                </td>
+                <td>
+                    <a class="pure-button button-xsmall delete" href="/Requirement/Score">삭제</a>
+                </td>
+            </tr>
+            }
+            
+        </tbody>
+    </table>
+    <p></p>
+    <p></p>
+    <a class="pure-button pure-button-primary" href="/Requirement/ScoreRegister">총학점요건등록</a>
+</div>
+@section script
+{
+    <script type="text/javascript">
+
+        $(".delete").click(function () {
+            var reult = confirm('정말 삭제하시겠습니까?');
+
+            if (result) {
+                var url = "/Requirement/Score";
+
+                $(location).attr('href', url);
+                return false;
+            }
+        });
+    </script>
+}

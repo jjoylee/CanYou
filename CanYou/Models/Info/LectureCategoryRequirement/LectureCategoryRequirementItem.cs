@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace CanYou.Models.Info.LectureCategoryRequirement
+{
+    public class LectureCategoryRequirementItem
+    {
+        public int Id { get; set; }
+        public int AccountId { get; set; }
+        public int LectureCategoryId { get; set; }
+        public int Cutline { get; set; }
+        public string LectureCategoryName { set; get; }
+    }
+}
