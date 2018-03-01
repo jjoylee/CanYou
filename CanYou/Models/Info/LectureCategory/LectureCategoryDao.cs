@@ -15,7 +15,6 @@ namespace CanYou.Models.Info.LectureCategory
         {
             string query = "Insert into LectureCategory(name) VALUES(@Name)";
             IDbParameters param = CreateDbParameters();
-            param.AddWithValue("Id", item.Id).DbType = DbType.Int32;
             param.AddWithValue("Name", item.Name).DbType = DbType.String;
             return AdoTemplate.ExecuteNonQuery(CommandType.Text, query,param);
         }
@@ -25,7 +24,7 @@ namespace CanYou.Models.Info.LectureCategory
             string query = "UPDATE LectureCategory SET name = @Name where id = @Id";
             IDbParameters param = CreateDbParameters();
             param.AddWithValue("Id", item.Id).DbType = DbType.Int32;
-            param.AddWithValue("Password", item.Name).DbType = DbType.String;
+            param.AddWithValue("Name", item.Name).DbType = DbType.String;
             return AdoTemplate.ExecuteNonQuery(CommandType.Text, query, param);
         }
 

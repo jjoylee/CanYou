@@ -15,7 +15,6 @@ namespace CanYou.Models.Info.LectureTypeRequirement
         {
             string query = "Insert into LectureTypeRequirement(accountId,lectureTypeId,cutline) VALUES(@AccountId,@LectureTypeId, @Cutline)";
             IDbParameters param = CreateDbParameters();
-            param.AddWithValue("Id",item.Id).DbType = DbType.Int32;
             param.AddWithValue("LectureTypeId",item.LectureTypeId).DbType = DbType.Int32;
             param.AddWithValue("AccountId",item.AccountId).DbType = DbType.Int32;
             param.AddWithValue("Cutline",item.Cutline).DbType = DbType.Int32;

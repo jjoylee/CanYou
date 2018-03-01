@@ -15,7 +15,6 @@ namespace CanYou.Models.Info.ScoreRequirement
         {
             string query = "Insert into ScoreRequirement(accountId,cutline) VALUES(@AccountId, @Cutline)";
             IDbParameters param = CreateDbParameters();
-            param.AddWithValue("Id",item.Id).DbType = DbType.Int32;
             param.AddWithValue("AccountId",item.AccountId).DbType = DbType.Int32;
             param.AddWithValue("Cutline",item.Cutline).DbType = DbType.Int32;
             return AdoTemplate.ExecuteNonQuery(CommandType.Text, query,param);
@@ -29,7 +28,7 @@ namespace CanYou.Models.Info.ScoreRequirement
             param.AddWithValue("AccountId", item.AccountId).DbType = DbType.Int32;
             param.AddWithValue("Cutline", item.Cutline).DbType = DbType.Int32;
             return AdoTemplate.ExecuteNonQuery(CommandType.Text, query, param);
-        }
+        }           
 
         public int Delete(int id)
         {

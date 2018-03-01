@@ -15,7 +15,6 @@ namespace CanYou.Models.Info.Section
         {
             string query = "Insert into Section(lectureTypeId,name) VALUES(@LectureTypeId, @Name)";
             IDbParameters param = CreateDbParameters();
-            param.AddWithValue("Id",item.Id).DbType = DbType.Int32;
             param.AddWithValue("LectureTypeId",item.LectureTypeId).DbType = DbType.Int32;
             param.AddWithValue("Name",item.Name).DbType = DbType.String;
             return AdoTemplate.ExecuteNonQuery(CommandType.Text,query,param);

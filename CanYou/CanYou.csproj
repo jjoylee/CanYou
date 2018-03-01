@@ -97,7 +97,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppConfig\Config.xml" />
+    <Content Include="AppConfig\Config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\Canyou.mdf" />
     <Content Include="App_Data\Canyou_log.ldf">
       <DependentUpon>Canyou.mdf</DependentUpon>

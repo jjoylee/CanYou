@@ -4,7 +4,7 @@
 
   <db:provider id="dbProvider"
                 provider="SqlServer-2.0"
-                connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Projects\CanYou\CanYou\App_Data\Canyou.mdf;Integrated Security=True"/>
+                connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\CanYou\CanYou\App_Data\Canyou.mdf;Integrated Security=True"/>
 
   <object id="adoTemplate" type="Spring.Data.Generic.AdoTemplate, Spring.Data">
     <property name="DbProvider" ref="dbProvider"/>

@@ -15,7 +15,6 @@ namespace CanYou.Models.Info.LectureType
         {
             string query = "Insert into LectureType(lectureCategoryId,name) VALUES(@LectureCategoryId,@Name)";
             IDbParameters param = CreateDbParameters();
-            param.AddWithValue("Id",item.Id).DbType = DbType.Int32;
             param.AddWithValue("LectureCategoryId",item.LectureCategoryId).DbType = DbType.Int32;
             param.AddWithValue("Name",item.Name).DbType = DbType.String;
             return AdoTemplate.ExecuteNonQuery(CommandType.Text,query,param);

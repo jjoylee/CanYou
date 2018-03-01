@@ -1,4 +1,5 @@
-﻿using Spring.Data.Common;
+﻿using Spring.Data;
+using Spring.Data.Common;
 using Spring.Data.Generic;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,20 @@ namespace CanYou.Models.Info.Account
             return list[0];
         }
 
+//    private IList<T> QueryWithRowMapper<T>(CommandType cmdType, string query, IRowMapper mapper,IDbParameters parameters)
+//    {
+//        IDataReader reader = null;
+//        IList<T> list = new List<T>();
 
+//        int rowNum=0;1
+//        while (reader.Read())
+//        {
+//            T t = 
+//              (T)mapper.MapRow(reader, rowNum++);
+//            list.Add(t);
+//       }
+//      return list;
+//    }
         public int UpdateState(int accountId, string state)
         {
             string query = "UPDATE account SET state = @State where id = @AccountId";

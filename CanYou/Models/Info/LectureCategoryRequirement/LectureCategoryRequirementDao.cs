@@ -18,7 +18,6 @@ namespace CanYou.Models.Info.LectureCategoryRequirement
             IDbParameters param = CreateDbParameters();
             param.AddWithValue("AccountId", item.AccountId).DbType = DbType.Int32;
             param.AddWithValue("Cutline",item.Cutline).DbType = DbType.Int32;
-            param.AddWithValue("Id", item.Id).DbType = DbType.Int32;
             param.AddWithValue("LectureCategoryId", item.LectureCategoryId).DbType = DbType.Int32;
             return AdoTemplate.ExecuteNonQuery(CommandType.Text, query, param);
         }

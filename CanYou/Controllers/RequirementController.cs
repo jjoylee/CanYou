@@ -43,7 +43,6 @@ namespace CanYou.Controllers
         public ActionResult CategoryRegister(int category, int cutline)
         {
             if (ExistCateogyrRequirement(category)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
-
             LectureCategoryRequirementItem item = new LectureCategoryRequirementItem();
             item.LectureCategoryId = category;
             item.Cutline = cutline;
@@ -71,8 +70,10 @@ namespace CanYou.Controllers
         }
 
         [HttpPost]
-        public ActionResult CategoryUPdate(int id, int category, int cutline)
+        public ActionResult CategoryUpdate(int id, int category, int cutline)
         {
+            LectureCategoryRequirementItem beforeItem = LectureCategoryRequirementDao.FindById(id);
+            if (beforeItem.LectureCategoryId != category && ExistCateogyrRequirement(category)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
             LectureCategoryRequirementItem item = new LectureCategoryRequirementItem();
             item.LectureCategoryId = category;
             item.Cutline = cutline;
@@ -159,7 +160,7 @@ namespace CanYou.Controllers
         {
             LectureTypeRequirementItem item = LectureTypeRequirementDao.FindById(id);
             IList<LectureCategoryItem> categoryList = LectureCategoryDao.FindLectureTypeExist();
-            IList<LectureTypeItem> typeList = LectureTypeDao.FindByCategoryId(categoryList[0].Id);
+            IList<LectureTypeItem> typeList = LectureTypeDao.FindByCategoryId(item.LectureCategoryId);
             ViewBag.categoryList = categoryList;
             ViewBag.Item = item;
             ViewBag.typeList = typeList;
@@ -170,6 +171,8 @@ namespace CanYou.Controllers
         [HttpPost]
         public ActionResult TypeUpdate(int id, int type, int cutline)
         {
+            LectureTypeRequirementItem beforeItem = LectureTypeRequirementDao.FindById(id);
+            if (beforeItem.LectureTypeId != type && ExistTypeRequirement(type)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
             LectureTypeRequirementItem item = new LectureTypeRequirementItem();
             item.LectureTypeId = type;
             item.Cutline = cutline;
@@ -209,8 +212,8 @@ namespace CanYou.Controllers
         [HttpGet]
         public ActionResult SectionRegister()
         {
-            IList<SectionRequirementItem> list = SectionRequirementDao.FindByLectureTypeId(2);
-            ViewBag.Section = list;
+           // IList<SectionRequirementItem> list = SectionRequirementDao.FindByLectureTypeId(2);
+           // ViewBag.Section = list;
             return View();
         }
 

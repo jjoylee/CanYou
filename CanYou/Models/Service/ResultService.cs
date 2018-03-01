@@ -77,6 +77,7 @@ namespace CanYou.Models.Service
 
         private void AddSectionResult(IList<ResultDetailItem> list, LectureCategoryRequirementItem categoryItem, LectureTypeRequirementItem typeItem)
         {
+            if (SectionRequirement == null) return;
             if (typeItem.LectureTypeId!= SectionRequirement.LectureTypeId) return;
             ResultDetailItem result = new ResultDetailItem();
             result.Name = categoryItem.LectureCategoryName + " " + typeItem.LectureTypeName + " 이수 영역 수";

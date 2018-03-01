@@ -25,8 +25,8 @@ namespace CanYou.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            IList<LectureDetailItem> list = LectureDetailDao.FindAll();
-            ViewBag.Detail = list;
+            // IList<LectureDetailItem> list = LectureDetailDao.FindAll();
+            // ViewBag.Detail = list;
 
             IList<LectureCategoryItem> categoryList = LectureCategoryDao.FindAll();
             ViewBag.Category = categoryList;
@@ -98,6 +98,8 @@ namespace CanYou.Controllers
         [HttpPost]
         public ActionResult Update(int id, string score, int category, [DefaultValue(0)]int type, string title, [DefaultValue(0)]int section, int credit)
         {
+            LectureDetailItem beforeItem = LectureDetailDao.FindById(id);
+            if (!title.Equals(beforeItem.Name) && ExistLectureDetail(title)) return Json(new { result = "fail", message = "이미 존재합니다." }, JsonRequestBehavior.AllowGet);
             LectureDetailItem item = new LectureDetailItem();
             item.LectureCategoryId = category;
             item.LectureTypeId = type;

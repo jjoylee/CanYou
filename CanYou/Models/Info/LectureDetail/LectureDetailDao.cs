@@ -15,7 +15,6 @@ namespace CanYou.Models.Info.LectureDetail
         {
             string query = "Insert into LectureDetail(accountId,lectureCategoryId,lectureTypeId,sectionId,name,credit,score) VALUES(@AccountId,@LectureCategoryId,@LectureTypeId,@SectionId,@Name,@Credit,@Score)";
             IDbParameters param = CreateDbParameters();
-            param.AddWithValue("Id", item.Id).DbType = DbType.Int32;
             param.AddWithValue("LectureCategoryId",item.LectureCategoryId).DbType = DbType.Int32;
             param.AddWithValue("LectureTypeId",item.LectureTypeId).DbType = DbType.Int32;
             param.AddWithValue("Name",item.Name).DbType = DbType.String;
