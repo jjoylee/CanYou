@@ -28,6 +28,7 @@ namespace CanYou.Models.Service
                 AddCategoryRequirement(list, item);
                 AddTypeRequirement(list,item);
             }
+            AddSectionResult(list);
             AddScoreRequirement(list);
             return list;
         }
@@ -71,16 +72,15 @@ namespace CanYou.Models.Service
                 result.Requirement = item.Cutline;
                 result.Score = GetScoreByType(item.LectureTypeId);
                 list.Add(result);
-                AddSectionResult(list, categoryItem, item);
+                //AddSectionResult(list, categoryItem, item);
             }
         }
 
-        private void AddSectionResult(IList<ResultDetailItem> list, LectureCategoryRequirementItem categoryItem, LectureTypeRequirementItem typeItem)
+        private void AddSectionResult(IList<ResultDetailItem> list)
         {
             if (SectionRequirement == null) return;
-            if (typeItem.LectureTypeId!= SectionRequirement.LectureTypeId) return;
             ResultDetailItem result = new ResultDetailItem();
-            result.Name = categoryItem.LectureCategoryName + " " + typeItem.LectureTypeName + " 이수 영역 수";
+            result.Name = "핵심 교양 이수 영역 수";
             result.Requirement = SectionRequirement.Cutline;
             result.Score = GetCountBySection();
             list.Add(result);

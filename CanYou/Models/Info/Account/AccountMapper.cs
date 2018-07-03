@@ -16,7 +16,6 @@ namespace CanYou.Models.Info.Account
             account.Email = reader.GetString(reader.GetOrdinal("email"));
             account.Password = reader.GetString(reader.GetOrdinal("password"));
             account.State = reader.GetString(reader.GetOrdinal("state"));
-
             return account;
         }
     }
